@@ -22,7 +22,7 @@ import jj.stella.repository.service.OAuth2Service;
 public class SecurityConfig {
 	
 	private static final String[] WHITE_LIST = {
-		"/resources/**", "/favicon.ico", "/", "/login", "/oauth2/**"
+		"/resources/**", "/favicon.ico", "/", "/login", "/logout", "/oauth2/**"
 	};
 	
 	@Bean
@@ -36,10 +36,17 @@ public class SecurityConfig {
 			).formLogin(form ->
 				form
 					.loginPage("/login")
-			).oauth2Login(oauth2 ->
+			).logout(logout ->
+				logout
+					.logoutUrl("/logout")
+					.logoutSuccessUrl("/login")
+					.deleteCookies("JSESSIONID")
+					.invalidateHttpSession(true)
+			)
+			.oauth2Login(oauth2 ->
 				oauth2
-					.defaultSuccessUrl("/home")
-					.failureUrl("/login?error")
+					.defaultSuccessUrl("/home", true)
+					.failureUrl("/login?error=true")
 					.redirectionEndpoint(redirect ->
 						redirect
 							.baseUri("/oauth2/callback/*")
