@@ -45,6 +45,7 @@ public class SecurityConfig {
 			)
 			.oauth2Login(oauth2 ->
 				oauth2
+					.loginPage("/login")
 					.defaultSuccessUrl("/home", true)
 					.failureUrl("/login?error=true")
 					.redirectionEndpoint(redirect ->
