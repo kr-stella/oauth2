@@ -2,10 +2,12 @@ package jj.stella.config;
 
 import java.util.Arrays;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,8 +24,15 @@ import jj.stella.repository.service.OAuth2Service;
 public class SecurityConfig {
 	
 	private static final String[] WHITE_LIST = {
-		"/resources/**", "/favicon.ico", "/", "/login", "/logout", "/oauth2/**"
+		"/resources/**", "/static/**", "/favicon.ico", "/", "/login", "/logout", "/oauth2/**"
 	};
+	
+	/** 정적 파일 무시 */
+//	@Bean
+//	public WebSecurityCustomizer webSecurityCustomizer() {
+//		return (web) -> web.ignoring()
+//				.requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+//	};
 	
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -33,7 +42,8 @@ public class SecurityConfig {
 					.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 					.requestMatchers(getRequestMatchers(WHITE_LIST)).permitAll()
 					.anyRequest().authenticated()
-			).formLogin(form ->
+			)
+			.formLogin(form ->
 				form
 					.loginPage("/login")
 			).logout(logout ->
@@ -45,6 +55,7 @@ public class SecurityConfig {
 			)
 			.oauth2Login(oauth2 ->
 				oauth2
+					.loginPage("/login")
 					.defaultSuccessUrl("/home", true)
 					.failureUrl("/login?error=true")
 					.redirectionEndpoint(redirect ->
@@ -55,7 +66,8 @@ public class SecurityConfig {
 						endpoint
 							.userService(new OAuth2Service())
 					)
-			).build();
+			)
+			.build();
 	};
 	
 	/** 비밀번호 암호화 ( 단방향 복호화 불가능 ) */
