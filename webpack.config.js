@@ -252,7 +252,7 @@ if(fs.existsSync(src) && fs.existsSync(modules)) {
 			plugins: [
 				...data.plugins,
 				new BundleAnalyzerPlugin({
-					analyzerPort: 58085
+					analyzerPort: 59000
 				}),
 				new webpack.DefinePlugin({ // 컴파일할 코드에서 특정 문자열을 설정한 값으로 치환.
 					"NODE_MODE": JSON.stringify(`development`),

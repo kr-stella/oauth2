@@ -4,7 +4,7 @@ import {useNavigate} from "react-router";
 
 const LoginBtn = () => {
 	const navigate = useNavigate();
-	const [popupUrl, setPopupUrl] = useState<string | null>(null);
+	const [ popupUrl, setPopupUrl ] = useState<string | null>(null);
 
 	const urls = [
 		{ name: `google`, url: `/oauth2/authorization/google` },

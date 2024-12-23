@@ -23,6 +23,7 @@ import jj.stella.repository.service.OAuth2Service;
 @EnableWebSecurity
 public class SecurityConfig {
 	
+	
 	private static final String[] WHITE_LIST = {
 		"/resources/**", "/static/**", "/favicon.ico", "/", "/login", "/logout", "/oauth2/**"
 	};
@@ -36,6 +37,7 @@ public class SecurityConfig {
 	
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		
 		return http
 			.authorizeHttpRequests(auth ->
 				auth
