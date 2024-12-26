@@ -48,13 +48,6 @@ import javax.crypto.spec.SecretKeySpec;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	private final AuthProperties authProperties;
-	private final ServerProperties serverProperties;
-	public SecurityConfig(AuthProperties authProperties, ServerProperties serverProperties) {
-		this.authProperties = authProperties;
-		this.serverProperties = serverProperties;
-	};
-
 	private static final String[] WHITE_LIST = {
 		"/resources/**", "/static/**", "/favicon.ico", "/", "/login", "/logout", "/oauth2/**"
 	};
@@ -90,29 +83,6 @@ public class SecurityConfig {
 	
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		String JWT_HEADER = authProperties.getJwt().getHeader();
-		String JWT_KEY = authProperties.getJwt().getKey();
-		String JWT_NAME = authProperties.getJwt().getName();
-		String JWT_ISSUER = authProperties.getJwt().getIssuer();
-		String JWT_AUDIENCE = authProperties.getJwt().getAudience();
-		String JWT_REFRESH_ISSUER = authProperties.getJwt().getRefresh().getIssuer();
-		String JWT_REFRESH_AUDIENCE = authProperties.getJwt().getRefresh().getAudience();
-		String JWT_DOMAIN = authProperties.getJwt().getDomain();
-		String JWT_PATH = authProperties.getJwt().getPath();
-		String JWT_EXPIRED = authProperties.getJwt().getExpired();
-		String JWT_ENCRYPT_SIGN = authProperties.getJwt().getEncrypt().getSign();
-		String JWT_ENCRYPT_TOKEN = authProperties.getJwt().getEncrypt().getToken();
-		String JWT_ENCRYPT_REFRESH_SIGN = authProperties.getJwt().getEncrypt().getRefresh().getSign();
-		String JWT_ENCRYPT_REFRESH_TOKEN = authProperties.getJwt().getEncrypt().getRefresh().getToken();
-
-		String CSRF_NAME = authProperties.getCsrf().getName();
-		String CSRF_PARAMETER = authProperties.getCsrf().getParameter();
-		String CSRF_HEADER = authProperties.getCsrf().getHeader();
-
-		String AUTH_SERVER = serverProperties.getAuth();
-		String JTI_SERVER = serverProperties.getJti();
-		String HOME_SERVER = serverProperties.getHome();
-		String ORIGIN_IP_API = serverProperties.getApi().getOriginIp();
 
 		return http
 			.authorizeHttpRequests(auth ->

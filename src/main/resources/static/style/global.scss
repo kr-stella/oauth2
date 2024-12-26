@@ -10,12 +10,57 @@
 	font-display: swap;
 }
 
+/* Wanted Sans Variable: Regular */
+@font-face {
+	font-family: wanted-sans;
+	src: url("../font/WantedSans-Regular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Wanted Sans Variable: Medium */
+@font-face {
+	font-family: wanted-sans;
+	src: url("../font/WantedSans-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Wanted Sans Variable: Semibold */
+@font-face {
+	font-family: wanted-sans;
+	src: url("../font/WantedSans-Semibold.ttf") format("truetype");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Wanted Sans Variable: Bold */
+@font-face {
+	font-family: wanted-sans;
+	src: url("../font/WantedSans-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Wanted Sans Variable: Extrabold */
+@font-face {
+	font-family: wanted-sans;
+	src: url("../font/WantedSans-Extrabold.ttf") format("truetype");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	outline: none;
 	word-break: break-all;
-
+	font-variant-numeric: tabular-nums;
 	&::before, &::after { outline: none; word-break: break-all; }
 }
 
@@ -23,7 +68,8 @@ body {
 	margin: 0;
 	padding: 0;
 	min-width: 280px;
-	font-family: story;
+	// font-family: story;
+	font-family: wanted-sans;
 	font-size: 1rem;
 	cursor: default;
 	line-height: 1.5;
@@ -53,7 +99,8 @@ input, textarea {
 	width: 100%;
 	height: 100%;
 	padding: 8px;
-	font-family: story;
+	// font-family: story;
+	font-family: wanted-sans;
 	font-size: 14px;
 	border-radius: 4px;
 	background-color: transparent;
@@ -62,7 +109,8 @@ input, textarea {
 input[type=file] { display: none !important; }
 button[type=button], button[type=submit] {
 	font-size: 14px;
-	font-family: story;
+	// font-family: story;
+	font-family: wanted-sans;
 	background: none;
 }
 textarea { resize: none; line-height: 1.5; }
@@ -81,7 +129,8 @@ img, canvas { vertical-align: top; }
 pre {
 	width: 100%;
 	height: auto;
-	font-family: story;
+	// font-family: story;
+	font-family: wanted-sans;
 	// img { width: 100%; }
 }
 
