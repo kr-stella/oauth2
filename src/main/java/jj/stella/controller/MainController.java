@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class MainController {
 	
 	/** 로그인 메인페이지 */
-	@GetMapping(value={"/", "/login", /*"/home"*/})
+	@GetMapping(value={"/", "/login"})
 	public ModelAndView main(HttpServletRequest req) throws Exception {
 		
 		ModelAndView page = new ModelAndView();
