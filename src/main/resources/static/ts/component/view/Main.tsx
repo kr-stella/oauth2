@@ -124,18 +124,7 @@ const Main = () => {
 			<div className={`login-box`}>
 				<div className={`login-container`}>
 					<div className={classNames(`login`, `shadow-3d`)}>
-
-
-
 						<div className={`login-body`}>
-
-
-							{/* <div className={`login-logo`}>
-								<h1>{`St2lla Server`}</h1>
-								<h1>{`St2lla Server`}</h1>
-								<h1>{`St2lla Server`}</h1>
-								<h1>{`St2lla Server`}</h1>
-							</div> */}
 							<div className={`login-welcome`}>
 								<p>{`Welcome,`}</p>
 								<p>{`Sign in to Continue !`}</p>
@@ -159,11 +148,11 @@ const Main = () => {
 							</div>}
 							<form onSubmit={onLogin}>
 								<div className={`login-input`}>
-									<InputID data={``} holder={`ID`}
+									<InputID data={`st2lla-test`} holder={`ID`}
 										focus={true} onChange={onId} />
 								</div>
 								<div className={`login-input`}>
-									<InputPassword data={``} holder={`Password`}
+									<InputPassword data={`test!Q3w`} holder={`Password`}
 										onChange={onPassword} onCapsLock={onCapsLock} />
 								</div>
 								<p ref={ref} className={`capslock`}><strong>{`CapsLock`}</strong>{`이 켜져있습니다.`}</p>
