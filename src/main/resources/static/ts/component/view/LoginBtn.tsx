@@ -14,6 +14,7 @@ const LoginBtn = () => {
 	];
 
 	const onSuccess = useCallback(() => {
+        setPopupUrl(null); // 팝업 URL을 초기화
 		navigate(`/home`);
 	}, [navigate]);
 

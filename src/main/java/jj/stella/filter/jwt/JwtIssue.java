@@ -77,32 +77,39 @@ public class JwtIssue extends OncePerRequestFilter {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		/** 로그인이 성공했을 때 로직 실행 */
 		if(auth != null && auth.isAuthenticated()) {
-			
-			String username = auth.getName();
-			AuthDetails details = (AuthDetails) auth.getDetails();
-
-			/** 로그인 성공 = 인증토큰 발급 + 세팅( JWE = 암호화된 JWT, Redis & Cookie에 저장 ) */
-			issueAuthTokenAndSet(response, username, details);
-
-			/** 로그인 성공 = 사용자가 자동로그인을 설정한 경우 Refresh Token 발급 + 세팅( JWE = 암호화된 JWT, DB에 저장 ) */
-			if(details.isRememberMe())
-				issueRefreshTokenAndSet(username, details);
-			
-			/** 로그인 결과 저장 - 성공 */
-			authDao.regLoginResult(new ResultDto(
-				"success", authUtil.encryptName(username), ((AuthDetails) details).getIp()
-			));
-			
-			/**
-			 * 어디로 Redirect 할 것인지 설정
-			 * Axios로 요청이 왔기 때문에 경로를 설정후 반환해야 함.
-			 * ( sendRedirect가 동작하지 않음. )
-			 * */ 
-			redirect(request, response);
-			
-			/** 중요. / 이후 FilterChain이 동작하지 않도록 여기서 반환 */
-			return;
-			
+			System.out.println(auth.isAuthenticated());
+			System.out.println("####### JwtIssue #######");
+			System.out.println(auth);
+			System.out.println(auth.getPrincipal());
+			System.out.println(auth.getDetails());
+			System.out.println(auth.getName());
+			System.out.println(auth.getAuthorities());
+//			
+//			String username = auth.getName();
+//			AuthDetails details = (AuthDetails) auth.getDetails();
+//
+//			/** 로그인 성공 = 인증토큰 발급 + 세팅( JWE = 암호화된 JWT, Redis & Cookie에 저장 ) */
+//			issueAuthTokenAndSet(response, username, details);
+//
+//			/** 로그인 성공 = 사용자가 자동로그인을 설정한 경우 Refresh Token 발급 + 세팅( JWE = 암호화된 JWT, DB에 저장 ) */
+//			if(details.isRememberMe())
+//				issueRefreshTokenAndSet(username, details);
+//			
+//			/** 로그인 결과 저장 - 성공 */
+//			authDao.regLoginResult(new ResultDto(
+//				"success", authUtil.encryptName(username), ((AuthDetails) details).getIp()
+//			));
+//			
+//			/**
+//			 * 어디로 Redirect 할 것인지 설정
+//			 * Axios로 요청이 왔기 때문에 경로를 설정후 반환해야 함.
+//			 * ( sendRedirect가 동작하지 않음. )
+//			 * */ 
+//			redirect(request, response);
+//			
+//			/** 중요. / 이후 FilterChain이 동작하지 않도록 여기서 반환 */
+//			return;
+//			
 		}
 		
 		chain.doFilter(request, response);
