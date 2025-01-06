@@ -167,7 +167,7 @@ public class SecurityConfig {
 							.csrfTokenRepository(new CsrfRepository(CSRF_NAME, CSRF_PARAMETER, CSRF_HEADER))
 							.csrfTokenRequestHandler(new CsrfHandler(CSRF_PARAMETER))
 			)
-			.addFilterBefore(oAuth2AuthenticationDetailsFilter(), OAuth2LoginAuthenticationFilter.class)
+//			.addFilterBefore(oAuth2AuthenticationDetailsFilter(), OAuth2LoginAuthenticationFilter.class)
 			.addFilterBefore(new Redirect(
 					JWT_HEADER, JWT_KEY, JWT_NAME, JWT_ISSUER, JWT_AUDIENCE, JWT_EXPIRED,
 					JWT_DOMAIN, JWT_PATH, JTI_SERVER,
@@ -303,14 +303,14 @@ public class SecurityConfig {
 //		return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository);
 //	}
 
-	private Filter oAuth2AuthenticationDetailsFilter() {
-		
-		OAuth2LoginAuthenticationFilter filter = new OAuth2LoginAuthenticationFilter(new OAuth2Service(), authorizedClientService);
-		filter.setAuthenticationDetailsSource(new OAuth2DetailsSource(ORIGIN_IP_API));
-//		filter.setAuthenticationDetailsSource(new OAuth2AuthDetailsSource(ORIGIN_IP_API));
-		
-		return filter;
-		
-	}
+//	private Filter oAuth2AuthenticationDetailsFilter() {
+//		
+//		OAuth2LoginAuthenticationFilter filter = new OAuth2LoginAuthenticationFilter(new OAuth2Service(), authorizedClientService);
+//		filter.setAuthenticationDetailsSource(new OAuth2DetailsSource(ORIGIN_IP_API));
+////		filter.setAuthenticationDetailsSource(new OAuth2AuthDetailsSource(ORIGIN_IP_API));
+//		
+//		return filter;
+//		
+//	}
 	
 }

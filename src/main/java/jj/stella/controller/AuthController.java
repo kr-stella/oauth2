@@ -9,7 +9,10 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestController
 public class AuthController {
 	
-	private static final String LOGIN_SUCCESS = "<script>window.opener.postMessage(\"login-success\", \"*\"); window.close();</script>";
+	private static final String LOGIN_SUCCESS = "<script>"
+			+ "window.opener.postMessage(\"login-success\", \"*\");"
+			+ "window.close();"
+			+ "</script>";
 	
 	/** 로그인 팝업창 */
 	@GetMapping("/login-success")

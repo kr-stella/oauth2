@@ -9,8 +9,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import lombok.Getter;
 import lombok.Setter;
 
-//@Getter
-//@Setter
+@Getter
+@Setter
 public class OAuth2UserVo implements OAuth2User {
 	
 	private Map<String, Object> attributes;
@@ -18,12 +18,6 @@ public class OAuth2UserVo implements OAuth2User {
 	private String nameAttributeKey;
 	
 	public OAuth2UserVo(Map<String, Object> attributes, Collection<? extends GrantedAuthority> authorities, String nameAttributeKey) {
-		
-		System.out.println(attributes);
-		System.out.println(authorities);
-		System.out.println(nameAttributeKey);
-		
-		
 		this.attributes = attributes;
 		this.authorities = authorities;
 		this.nameAttributeKey = nameAttributeKey;
